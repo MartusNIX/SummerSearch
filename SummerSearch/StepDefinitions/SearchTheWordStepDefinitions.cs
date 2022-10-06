@@ -1,5 +1,7 @@
 using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using SummerSearch.Pages;
 using TechTalk.SpecFlow;
 
 namespace SummerSearch.StepDefinitions
@@ -7,8 +9,13 @@ namespace SummerSearch.StepDefinitions
     [Binding]
     public class SearchTheWordStepDefinitions : BaseSteps
     {
+        MainPage mainPage;
+        SearchResultPage resultPage;
+
         public SearchTheWordStepDefinitions(IWebDriver driver) : base(driver)
         {
+            mainPage = new MainPage(webDriver);
+            resultPage = new SearchResultPage(webDriver);
         }
 
         [Given(@"I launch the page")]
@@ -17,23 +24,24 @@ namespace SummerSearch.StepDefinitions
             webDriver.Navigate().GoToUrl("http://automationpractice.com/");
         }
 
-/*        [Given(@"I insert word in searchfield Summer")]
+        [Given(@"I insert word in searchfield Summer")]
         public void GivenIInsertWordInSearchfieldSummer()
         {
-            var inputText = webDriver.FindElement(By.Id("search_query_top"));
-            inputText.SendKeys("Summer");
+            mainPage.InsertWordInSearchfield("Summer");
         }
 
         [When(@"I click on magnifier")]
         public void WhenIClickOnMagnifier()
         {
-            var pressSearchBtn = webDriver.FindElement(By.Name("submit_search"));
+            mainPage.ClickSearchBtn();
         }
 
         [Then(@"I see the same words SUMMER")]
         public void ThenISeeTheSameWordsSUMMER()
         {
-            throw new PendingStepException();
-        }*/
+            var insertedWord = resultPage.GetInsertedWord();
+            var displayedWordInHeader = resultPage.GetDisplayedWord();
+            Assert.AreEqual(insertedWord, displayedWordInHeader);
+        }
     }
 }
