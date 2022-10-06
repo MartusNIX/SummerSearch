@@ -68,7 +68,11 @@
     <Reference Include="SpecFlow.Internal.Json, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.Internal.Json.1.0.8\lib\net45\SpecFlow.Internal.Json.dll</HintPath>
     </Reference>
+    <Reference Include="StringLibraryTest">
+      <HintPath>..\..\Solution1\StringLibraryTest\bin\Debug\net6.0\StringLibraryTest.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -88,11 +92,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hooks\SharedBrowserHooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setup\WebdriverSetup.cs" />
+    <Compile Include="StepDefinitions\BaseSteps.cs" />
+    <Compile Include="StepDefinitions\SearchTheWordStepDefinitions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Features\SearchTheWord.feature" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
