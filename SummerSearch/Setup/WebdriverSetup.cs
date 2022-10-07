@@ -18,9 +18,8 @@ namespace SummerSearch.Setup
         private readonly IObjectContainer _container;
         private ScenarioContext _context;
 
-        public WebdriverSetup (/*IWebDriver driver, */IObjectContainer container)
+        public WebdriverSetup (IObjectContainer container)
         {
-            /*_driver = driver;*/
             _container = container;
             _context = container.Resolve<ScenarioContext>();
         }
